@@ -1,5 +1,4 @@
-
-        /* BASE STYLES */
+/* BASE STYLES */
         :root {
             --primary: #ff4d4d;
             --bg: #0d1117;
@@ -7,6 +6,16 @@
             --border: #30363d;
             --text-main: #c9d1d9;
             --text-dim: #8b949e;
+        }
+
+        /* Desktop: make key texts larger on wide screens */
+        @media (min-width: 1025px) {
+            .philosophy-card h3 { font-size: 28px; }
+            .class-heading { font-size: 22px; padding-left: 22px; }
+            .member-info .name { font-size: 20px; }
+            .member-info .vibe { font-size: 14px; }
+            .teacher-box h2 { font-size: 56px; }
+            .stat-item h3 { font-size: 48px; }
         }
 
         * {
@@ -84,10 +93,12 @@
             transition: 0.3s;
         }
 
-        /* HERO SECTION - FIXED FULL WIDTH & LEFT ALIGNMENT */
+        /* HERO SECTION - use 16:9 aspect ratio and responsive scaling */
         .hero {
             width: 100vw;
-            height: 85vh;
+            aspect-ratio: 16/9;
+            max-height: 85vh;
+            min-height: 320px;
             display: flex;
             flex-direction: column;
             justify-content: flex-end; /* Memaksa teks ke bawah */
@@ -163,6 +174,15 @@
             height: 4px;
             background: var(--primary);
             margin: 15px auto;
+        }
+
+        .class-heading {
+            font-size: 25px;
+            border-left: 6px solid var(--primary);
+            padding-left: 20px;
+            margin: 60px 0 30px 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         /* BERANDA GRID */
@@ -262,6 +282,15 @@
         .member-card:hover .member-img { filter: grayscale(0); }
         .member-info { padding: 20px; }
 
+        /* Subtitle under IG handle (small helper text) */
+        .member-info .subtitle {
+            font-size: 12px;
+            color: var(--text-dim);
+            margin-top: 6px;
+            margin-bottom: 0;
+            opacity: 0.95;
+        }
+
         /* GALLERY */
         .gallery-grid { columns: 3 300px; column-gap: 20px; }
         .gallery-item { margin-bottom: 20px; break-inside: avoid; border-radius: 15px; overflow: hidden; border: 1px solid var(--border); }
@@ -317,15 +346,17 @@
                 padding: 12px;
             }
 
-            /* Perbaikan posisi teks di HP tetap di kiri bawah */
+            /* Perbaikan posisi teks di HP tetap di kiri bawah - pertahankan 16:9 tapi lebih kecil */
             .hero { 
-                height: 70vh; 
+                aspect-ratio: 16/9;
+                height: auto;
+                max-height: 70vh;
                 text-align: left; 
                 align-items: flex-start; 
                 padding: 0 8% 50px 8%; 
             }
-            .hero h1 { font-size: 45px; }
-            .hero p { letter-spacing: 4px; font-size: 14px; }
+            .hero h1 { font-size: clamp(28px, 8vw, 56px); }
+            .hero p { letter-spacing: 4px; font-size: clamp(12px, 3.5vw, 16px); }
             
             /* Penyesuaian Struktur Organisasi agar lebih kecil di HP */
             .org-grid {
@@ -390,4 +421,73 @@
             .teacher-box { flex-direction: column; text-align: center; }
             .gallery-grid { columns: 2; }
         }
- 
+
+        /* Make class-heading slightly smaller on tablet/mobile */
+        @media (max-width: 1024px) {
+            .class-heading { font-size: 20px; padding-left: 16px; }
+        }
+
+        @media (max-width: 480px) {
+            .class-heading { font-size: 16px; padding-left: 12px; }
+        }
+
+        /* Extra small screens: make cards and text smaller so mobile resembles desktop layout */
+        @media (max-width: 480px) {
+            .hero { padding: 0 6% 40px 6%; max-height: 60vh; }
+            .hero h1 { font-size: clamp(22px, 9vw, 42px); }
+            .hero p { font-size: clamp(11px, 3.5vw, 14px); letter-spacing: 3px; }
+
+            .philosophy-card { padding: 18px; border-radius: 12px; }
+            .philosophy-card h3 { font-size: 18px; }
+            .philosophy-card p { font-size: 14px; color: var(--text-main); }
+
+            /* Stats grid smaller cards */
+            .stats-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+            .stat-item { padding: 16px; border-radius: 10px; }
+            .stat-item h3 { font-size: 20px; }
+            .stat-item p { font-size: 13px; color: var(--text-dim); margin-top: 6px; }
+
+            /* Teacher box adjustments for small screens */
+            .teacher-box { padding: 20px; gap: 16px; align-items: center; }
+            .teacher-box img { width: 140px; height: 180px; border-radius: 12px; }
+            .teacher-box h2 { font-size: 20px; line-height: 1.1; margin: 8px 0; }
+            .teacher-box p { font-size: 14px; padding-left: 12px; border-left: 3px solid var(--primary); }
+
+            .guest-box, .guest-input, .playlist-wrapper { padding: 20px; }
+
+            /* Org grid: two columns on small screens (left/right) */
+            .org-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+            .classmate-grid { grid-template-columns: 1fr 1fr; }
+
+            /* Make org cards smaller and more compact on mobile */
+            .org-card { padding: 12px; border-radius: 12px; }
+            .org-card .role { font-size: 11px; letter-spacing: 1px; }
+            .org-card .name { font-size: 14px; margin: 6px 0; }
+            .org-card .vibe { font-size: 12px; color: var(--text-dim); }
+        }
+
+        /* Ensure teacher box heading and paragraph are smaller and override inline styles */
+        .teacher-box h2 {
+            font-size: clamp(20px, 4.5vw, 32px) !important;
+            margin: 8px 0 !important;
+            font-weight: 700;
+            line-height: 1.05;
+        }
+
+        .teacher-box p {
+            font-size: clamp(13px, 2.8vw, 18px) !important;
+            padding-left: 12px !important;
+            border-left: 3px solid var(--primary) !important;
+            color: var(--text-dim);
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .teacher-box h2 { font-size: clamp(18px, 5.5vw, 26px) !important; }
+            .teacher-box p { font-size: 15px !important; padding-left: 10px !important; border-left-width: 3px !important; }
+        }
+
+        @media (max-width: 480px) {
+            .teacher-box h2 { font-size: 18px !important; }
+            .teacher-box p { font-size: 14px !important; padding-left: 8px !important; }
+        }
