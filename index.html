@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XII TJKT 1 - SMK Tiara Nusa</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo" onclick="showSection('home')">XII TJKT 1</div>
+        <!-- Ikon Garis Tiga (Hamburger) -->
+        <div class="menu-toggle" id="mobile-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav-menu" id="nav-list">
+            <li><a href="#" class="active" onclick="showSection('home', this)">Cerita Kita</a></li>
+            <li><a href="#" onclick="showSection('journey', this)">The Journey</a></li>
+            <li><a href="#" onclick="showSection('classmates', this)">Classmates</a></li>
+            <li><a href="#" onclick="showSection('gallery', this)">Gallery</a></li>
+            <li><a href="#" onclick="showSection('playlist', this)">Playlist</a></li>
+            <li><a href="#" onclick="showSection('guestbook', this)">Guestbook</a></li>
+        </ul>
+    </nav>
+
+    <!-- 1. CERITA KITA (BERANDA) -->
+    <section id="home" class="active" style="padding: 0;">
+        <header class="hero">
+            <h1>XII TJKT 1</h1>
+            <p>SMK TIARA NUSA</p>
+            <div class="red-line"></div>
+        </header>
+
+        <div style="padding: 80px 10%;">
+            <div class="section-header">
+                <h2>Cerita Kita</h2>
+                <div class="line"></div>
+            </div>
+
+            <!-- Statistik & Filosofi -->
+            <div class="home-grid">
+                <div class="philosophy-card">
+                    <h3 style="color: var(--primary); margin-bottom: 20px;">Filosofi KONFFIDEN</h3>
+                    <p><i>"Kings Of Network Focus for Future Intelligent Digital Era Networking"</i></p>
+                    <br>
+                    <p>Kami adalah angkatan yang lahir di tengah kabel LAN yang ruwet dan konfigurasi Mikrotik yang kadang bikin pusing. KONFFIDEN adalah janji kami untuk tetap percaya diri menghadapi masa depan digital yang menantang.</p>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item"><h3>29</h3><p>Warga Kelas</p></div>
+                    <div class="stat-item"><h3>12</h3><p>Pasangan Cinlok</p></div>
+                    <div class="stat-item"><h3>999+</h3><p>Laporan BK</p></div>
+                    <div class="stat-item"><h3>100%</h3><p>Solidaritas</p></div>
+                </div>
+            </div>
+
+            <!-- Wali Kelas -->
+            <div class="teacher-box">
+                <img src="https://images.unsplash.com/photo-1544717297-fa95b33964f7?q=80&w=400" alt="Wali Kelas">
+                <div style="flex: 1;">
+                    <span style="color: var(--primary); font-weight: bold; text-transform: uppercase; font-size: 12px;">The Guardian</span>
+                    <h2 style="font-size: 36px; margin: 10px 0;">Pedro Jose Antonio, S.Kom.</h2>
+                    <p style="color: var(--text-dim); border-left: 4px solid var(--primary); padding-left: 20px; font-style: italic; font-size: 18px;">
+                        "Kalian mungkin sering bikin pusing dengan kabel yang berantakan, tapi di mata saya, kalian adalah teknisi masa depan yang paling hebat. Sukses selalu, TJKT 1!"
+                    </p>
+                </div>
+            </div>
+
+            <!-- Struktur Kelas -->
+            <h3 class="org-title">Struktur Kelas</h3>
+            <div class="org-grid">
+                <div class="org-card">
+                    <div class="role">Ketua Kelas</div>
+                    <div class="name">Muhamamad Alviansyah</div>
+                    <div class="vibe">"Si Paling Sabar Nagih Uang Kas"</div>
+                </div>
+                <div class="org-card">
+                    <div class="role">Wakil Ketua</div>
+                    <div class="name">Destriawan Althaf Rabbani</div>
+                    <div class="vibe">"Cuma Ada Pas Jam Kosong"</div>
+                </div>
+                <div class="org-card">
+                    <div class="role">Sekretaris</div>
+                    <div class="name">Chelsea Kayla Manik</div>
+                    <div class="vibe">"Tulisan Bagus Tapi Jarang Nulis"</div>
+                </div>
+                <div class="org-card">
+                    <div class="role">Sekretaris</div>
+                    <div class="name">Muhammad Aditya Pratama</div>
+                    <div class="vibe">"Tulisan Bagus Tapi Jarang Nulis"</div>
+                </div>
+                <div class="org-card">
+                    <div class="role">Bendahara</div>
+                    <div class="name">Delia Anggraini Setiawan</div>
+                    <div class="vibe">"Si Paling Galak Kalau Belum Bayar"</div>
+                </div>
+                <div class="org-card">
+                    <div class="role">Seksi Kebersihan</div>
+                    <div class="name">Mudita Desca Ardya Pramesti</div>
+                    <div class="vibe">"Tulisan Bagus Tapi Jarang Nulis"</div>
+                </div>
+                <div class="org-card">
+                    <div class="role">Seksi Keamanan</div>
+                    <div class="name">Akhdaan Aliif Arsalan</div>
+                    <div class="vibe">"Tulisan Bagus Tapi Jarang Nulis"</div>
+                </div>
+                <div class="org-card">
+                    <div class="role">Seksi Agama</div>
+                    <div class="name">Awan Dzahran Arifin</div>
+                    <div class="vibe">"Tulisan Bagus Tapi Jarang Nulis"</div>
+                </div>
+                <div class="org-card">
+                    <div class="role">Seksi Agama</div>
+                    <div class="name">Mardiasyah Bactiar Affatt</div>
+                    <div class="vibe">"Tulisan Bagus Tapi Jarang Nulis"</div>
+                </div>
+                <div class="org-card">
+                    <div class="role">Seksi Agama</div>
+                    <div class="name">Nasywa Athaya Yasmine Riyanto</div>
+                    <div class="vibe">"Tulisan Bagus Tapi Jarang Nulis"</div>
+                </div>
+                <div class="org-card">
+                    <div class="role">Seksi Agama</div>
+                    <div class="name">Jhon Hendrico Purba</div>
+                    <div class="vibe">"Tulisan Bagus Tapi Jarang Nulis"</div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- 2. THE JOURNEY -->
+    <section id="journey">
+        <div class="section-header">
+            <h2>The Journey</h2>
+            <div class="line"></div>
+        </div>
+        <div class="timeline">
+            <div class="timeline-container left">
+                <div class="t-content">
+                    <h3>2023: Masih Polos</h3>
+                    <p>Masa-masa MPLS online. Kenalan lewat layar HP, profil masih pake foto anime semua.</p>
+                </div>
+            </div>
+            <div class="timeline-container right">
+                <div class="t-content">
+                    <h3>2024: Era Kabel</h3>
+                    <p>Pertama kali pegang alat crimping. Banyak yang luka tapi tetap ketawa demi nilai praktek.</p>
+                </div>
+            </div>
+            <div class="timeline-container left">
+                <div class="t-content">
+                    <h3>2025: Puncak Kompak</h3>
+                    <p>Study tour yang gak terlupakan. Satu bus nyanyi bareng sampe serak, momen paling solid.</p>
+                </div>
+            </div>
+            <div class="timeline-container right">
+                <div class="t-content">
+                    <h3>2026: Sayonara</h3>
+                    <p>Hari perpisahan. Air mata tumpah tapi doa sukses terucap buat semua rekan pejuang.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. CLASSMATES -->
+    <section id="classmates">
+        <div class="section-header">
+            <h2>Wajah Kelas</h2>
+            <div class="line"></div>
+        </div>
+        <div class="classmate-grid">
+            <div class="member-card">
+                <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=300" class="member-img">
+                <div class="member-info">
+                    <h3 class="name">Budi Santoso</h3>
+                    <p class="vibe" style="color: var(--primary)">@budisntso</p>
+                    <p style="font-size: 12px; margin-top: 10px; color: var(--text-dim)">"Most Likely To: Jadi CEO Startup tapi tetep telat reuni."</p>
+                </div>
+            </div>
+            <div class="member-card">
+                <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=300" class="member-img">
+                <div class="member-info">
+                    <h3 class="name">Siti Aminah</h3>
+                    <p class="vibe" style="color: var(--primary)">@sitiaaa_</p>
+                    <p style="font-size: 12px; margin-top: 10px; color: var(--text-dim)">"Most Likely To: Jadi influencer yang jualan seblak."</p>
+                </div>
+            </div>
+            <div class="member-card">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300" class="member-img">
+                <div class="member-info">
+                    <h3 class="name">Andi Wijaya</h3>
+                    <p class="vibe" style="color: var(--primary)">@andi.wij</p>
+                    <p style="font-size: 12px; margin-top: 10px; color: var(--text-dim)">"Most Likely To: Hilang tanpa kabar pas diajak kumpul."</p>
+                </div>
+            </div>
+            <div class="member-card">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300" class="member-img">
+                <div class="member-info">
+                    <h3 class="name">Andi Wijaya</h3>
+                    <p class="vibe" style="color: var(--primary)">@andi.wij</p>
+                    <p style="font-size: 12px; margin-top: 10px; color: var(--text-dim)">"Most Likely To: Hilang tanpa kabar pas diajak kumpul."</p>
+                </div>
+            </div><div class="member-card">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300" class="member-img">
+                <div class="member-info">
+                    <h3 class="name">Andi Wijaya</h3>
+                    <p class="vibe" style="color: var(--primary)">@andi.wij</p>
+                    <p style="font-size: 12px; margin-top: 10px; color: var(--text-dim)">"Most Likely To: Hilang tanpa kabar pas diajak kumpul."</p>
+                </div>
+            </div><div class="member-card">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300" class="member-img">
+                <div class="member-info">
+                    <h3 class="name">Andi Wijaya</h3>
+                    <p class="vibe" style="color: var(--primary)">@andi.wij</p>
+                    <p style="font-size: 12px; margin-top: 10px; color: var(--text-dim)">"Most Likely To: Hilang tanpa kabar pas diajak kumpul."</p>
+                </div>
+            </div><div class="member-card">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300" class="member-img">
+                <div class="member-info">
+                    <h3 class="name">Andi Wijaya</h3>
+                    <p class="vibe" style="color: var(--primary)">@andi.wij</p>
+                    <p style="font-size: 12px; margin-top: 10px; color: var(--text-dim)">"Most Likely To: Hilang tanpa kabar pas diajak kumpul."</p>
+                </div>
+            </div><div class="member-card">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300" class="member-img">
+                <div class="member-info">
+                    <h3 class="name">Andi Wijaya</h3>
+                    <p class="vibe" style="color: var(--primary)">@andi.wij</p>
+                    <p style="font-size: 12px; margin-top: 10px; color: var(--text-dim)">"Most Likely To: Hilang tanpa kabar pas diajak kumpul."</p>
+                </div>
+            </div><div class="member-card">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300" class="member-img">
+                <div class="member-info">
+                    <h3 class="name">Andi Wijaya</h3>
+                    <p class="vibe" style="color: var(--primary)">@andi.wij</p>
+                    <p style="font-size: 12px; margin-top: 10px; color: var(--text-dim)">"Most Likely To: Hilang tanpa kabar pas diajak kumpul."</p>
+                </div>
+            </div><div class="member-card">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300" class="member-img">
+                <div class="member-info">
+                    <h3 class="name">Andi Wijaya</h3>
+                    <p class="vibe" style="color: var(--primary)">@andi.wij</p>
+                    <p style="font-size: 12px; margin-top: 10px; color: var(--text-dim)">"Most Likely To: Hilang tanpa kabar pas diajak kumpul."</p>
+                </div>
+            </div><div class="member-card">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300" class="member-img">
+                <div class="member-info">
+                    <h3 class="name">Andi Wijaya</h3>
+                    <p class="vibe" style="color: var(--primary)">@andi.wij</p>
+                    <p style="font-size: 12px; margin-top: 10px; color: var(--text-dim)">"Most Likely To: Hilang tanpa kabar pas diajak kumpul."</p>
+                </div>
+            </div><div class="member-card">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300" class="member-img">
+                <div class="member-info">
+                    <h3 class="name">Andi Wijaya</h3>
+                    <p class="vibe" style="color: var(--primary)">@andi.wij</p>
+                    <p style="font-size: 12px; margin-top: 10px; color: var(--text-dim)">"Most Likely To: Hilang tanpa kabar pas diajak kumpul."</p>
+                </div>
+            </div><div class="member-card">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300" class="member-img">
+                <div class="member-info">
+                    <h3 class="name">Andi Wijaya</h3>
+                    <p class="vibe" style="color: var(--primary)">@andi.wij</p>
+                    <p style="font-size: 12px; margin-top: 10px; color: var(--text-dim)">"Most Likely To: Hilang tanpa kabar pas diajak kumpul."</p>
+                </div>
+            </div><div class="member-card">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300" class="member-img">
+                <div class="member-info">
+                    <h3 class="name">Andi Wijaya</h3>
+                    <p class="vibe" style="color: var(--primary)">@andi.wij</p>
+                    <p style="font-size: 12px; margin-top: 10px; color: var(--text-dim)">"Most Likely To: Hilang tanpa kabar pas diajak kumpul."</p>
+                </div>
+            </div><div class="member-card">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300" class="member-img">
+                <div class="member-info">
+                    <h3 class="name">Andi Wijaya</h3>
+                    <p class="vibe" style="color: var(--primary)">@andi.wij</p>
+                    <p style="font-size: 12px; margin-top: 10px; color: var(--text-dim)">"Most Likely To: Hilang tanpa kabar pas diajak kumpul."</p>
+                </div>
+            </div><div class="member-card">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300" class="member-img">
+                <div class="member-info">
+                    <h3 class="name">Andi Wijaya</h3>
+                    <p class="vibe" style="color: var(--primary)">@andi.wij</p>
+                    <p style="font-size: 12px; margin-top: 10px; color: var(--text-dim)">"Most Likely To: Hilang tanpa kabar pas diajak kumpul."</p>
+                </div>
+            </div><div class="member-card">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300" class="member-img">
+                <div class="member-info">
+                    <h3 class="name">Andi Wijaya</h3>
+                    <p class="vibe" style="color: var(--primary)">@andi.wij</p>
+                    <p style="font-size: 12px; margin-top: 10px; color: var(--text-dim)">"Most Likely To: Hilang tanpa kabar pas diajak kumpul."</p>
+                </div>
+            </div><div class="member-card">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300" class="member-img">
+                <div class="member-info">
+                    <h3 class="name">Andi Wijaya</h3>
+                    <p class="vibe" style="color: var(--primary)">@andi.wij</p>
+                    <p style="font-size: 12px; margin-top: 10px; color: var(--text-dim)">"Most Likely To: Hilang tanpa kabar pas diajak kumpul."</p>
+                </div>
+            </div><div class="member-card">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300" class="member-img">
+                <div class="member-info">
+                    <h3 class="name">Andi Wijaya</h3>
+                    <p class="vibe" style="color: var(--primary)">@andi.wij</p>
+                    <p style="font-size: 12px; margin-top: 10px; color: var(--text-dim)">"Most Likely To: Hilang tanpa kabar pas diajak kumpul."</p>
+                </div>
+            </div><div class="member-card">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300" class="member-img">
+                <div class="member-info">
+                    <h3 class="name">Andi Wijaya</h3>
+                    <p class="vibe" style="color: var(--primary)">@andi.wij</p>
+                    <p style="font-size: 12px; margin-top: 10px; color: var(--text-dim)">"Most Likely To: Hilang tanpa kabar pas diajak kumpul."</p>
+                </div>
+            </div><div class="member-card">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300" class="member-img">
+                <div class="member-info">
+                    <h3 class="name">Andi Wijaya</h3>
+                    <p class="vibe" style="color: var(--primary)">@andi.wij</p>
+                    <p style="font-size: 12px; margin-top: 10px; color: var(--text-dim)">"Most Likely To: Hilang tanpa kabar pas diajak kumpul."</p>
+                </div>
+            </div><div class="member-card">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300" class="member-img">
+                <div class="member-info">
+                    <h3 class="name">Andi Wijaya</h3>
+                    <p class="vibe" style="color: var(--primary)">@andi.wij</p>
+                    <p style="font-size: 12px; margin-top: 10px; color: var(--text-dim)">"Most Likely To: Hilang tanpa kabar pas diajak kumpul."</p>
+                </div>
+            </div><div class="member-card">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300" class="member-img">
+                <div class="member-info">
+                    <h3 class="name">Andi Wijaya</h3>
+                    <p class="vibe" style="color: var(--primary)">@andi.wij</p>
+                    <p style="font-size: 12px; margin-top: 10px; color: var(--text-dim)">"Most Likely To: Hilang tanpa kabar pas diajak kumpul."</p>
+                </div>
+            </div><div class="member-card">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300" class="member-img">
+                <div class="member-info">
+                    <h3 class="name">Andi Wijaya</h3>
+                    <p class="vibe" style="color: var(--primary)">@andi.wij</p>
+                    <p style="font-size: 12px; margin-top: 10px; color: var(--text-dim)">"Most Likely To: Hilang tanpa kabar pas diajak kumpul."</p>
+                </div>
+            </div><div class="member-card">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300" class="member-img">
+                <div class="member-info">
+                    <h3 class="name">Andi Wijaya</h3>
+                    <p class="vibe" style="color: var(--primary)">@andi.wij</p>
+                    <p style="font-size: 12px; margin-top: 10px; color: var(--text-dim)">"Most Likely To: Hilang tanpa kabar pas diajak kumpul."</p>
+                </div>
+            </div><div class="member-card">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300" class="member-img">
+                <div class="member-info">
+                    <h3 class="name">Andi Wijaya</h3>
+                    <p class="vibe" style="color: var(--primary)">@andi.wij</p>
+                    <p style="font-size: 12px; margin-top: 10px; color: var(--text-dim)">"Most Likely To: Hilang tanpa kabar pas diajak kumpul."</p>
+                </div>
+            </div><div class="member-card">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300" class="member-img">
+                <div class="member-info">
+                    <h3 class="name">Andi Wijaya</h3>
+                    <p class="vibe" style="color: var(--primary)">@andi.wij</p>
+                    <p style="font-size: 12px; margin-top: 10px; color: var(--text-dim)">"Most Likely To: Hilang tanpa kabar pas diajak kumpul."</p>
+                </div>
+            </div><div class="member-card">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300" class="member-img">
+                <div class="member-info">
+                    <h3 class="name">Andi Wijaya</h3>
+                    <p class="vibe" style="color: var(--primary)">@andi.wij</p>
+                    <p style="font-size: 12px; margin-top: 10px; color: var(--text-dim)">"Most Likely To: Hilang tanpa kabar pas diajak kumpul."</p>
+                </div>
+            </div><div class="member-card">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300" class="member-img">
+                <div class="member-info">
+                    <h3 class="name">Andi Wijaya</h3>
+                    <p class="vibe" style="color: var(--primary)">@andi.wij</p>
+                    <p style="font-size: 12px; margin-top: 10px; color: var(--text-dim)">"Most Likely To: Hilang tanpa kabar pas diajak kumpul."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. GALLERY -->
+    <section id="gallery">
+        <div class="section-header">
+            <h2>Momen Seru</h2>
+            <div class="line"></div>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1523240715639-99f846e972e5?q=80&w=600"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=600"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=600"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=600"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1491843384429-171f1f217712?q=80&w=600"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=600"></div>
+        </div>
+    </section>
+
+    <!-- 5. PLAYLIST -->
+    <section id="playlist">
+        <div class="section-header">
+            <h2>Ruang Suara</h2>
+            <div class="line"></div>
+        </div>
+        <div class="playlist-wrapper">
+            <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DX1s9vY9rnuGf?utm_source=generator&theme=0" width="100%" height="450" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+        </div>
+    </section>
+
+    <!-- 6. GUESTBOOK -->
+    <section id="guestbook">
+        <div class="section-header">
+            <h2>Guestbook</h2>
+            <div class="line"></div>
+        </div>
+        <div class="guest-box">
+            <div class="guest-input">
+                <input type="text" id="gName" placeholder="Nama Anda">
+            </div>
+            <div class="guest-input">
+                <textarea id="gMsg" rows="5" placeholder="Pesan atau harapan untuk masa depan..."></textarea>
+            </div>
+            <button class="btn-send" onclick="submitMsg()">Simpan Kenangan</button>
+            
+            <div class="comment-list" id="comment-container">
+                <div class="comment-item">
+                    <strong>Wali Kelas:</strong>
+                    <p>Jangan pernah lupakan sekolah ini, pintu selalu terbuka buat kalian!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Navigasi Seksi
+        function showSection(id, el) {
+            document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-menu a').forEach(a => a.classList.remove('active'));
+            
+            document.getElementById(id).classList.add('active');
+            if(el) el.classList.add('active');
+            
+            window.scrollTo(0,0);
+            
+            // Tutup menu mobile jika sedang terbuka
+            document.getElementById('nav-list').classList.remove('active');
+        }
+
+        // Toggle Mobile Menu
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const navList = document.getElementById('nav-list');
+        
+        mobileToggle.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
+
+        // Simpan Pesan Buku Tamu
+        function submitMsg() {
+            const name = document.getElementById('gName').value;
+            const msg = document.getElementById('gMsg').value;
+            const container = document.getElementById('comment-container');
+
+            if(name && msg) {
+                const item = document.createElement('div');
+                item.className = 'comment-item';
+                item.innerHTML = `<strong>${name}:</strong><p>${msg}</p>`;
+                container.prepend(item);
+                
+                document.getElementById('gName').value = '';
+                document.getElementById('gMsg').value = '';
+            } else {
+                alert("Lengkapi nama dan pesan dulu ya!");
+            }
+        }
+
+        // Reset Menu on Resize
+        window.addEventListener('resize', () => {
+            if(window.innerWidth > 768) {
+                navList.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
