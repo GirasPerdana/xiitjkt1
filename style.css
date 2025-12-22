@@ -6,6 +6,10 @@
             --border: #30363d;
             --text-main: #c9d1d9;
             --text-dim: #8b949e;
+            /* Per-level accent variables */
+            --accent-12: #ff4d4d;; /* level 12 default */
+            --accent-11: #8B2020; /* level 11 default */
+            --accent-10: #555555; /* level 10 default */
         }
 
         /* Desktop: make key texts larger on wide screens */
@@ -126,7 +130,7 @@
         }
 
         .hero p {
-            font-size: clamp(12px, 2.5vw, 22px);
+                .teacher-box p { font-size: clamp(13px, 2.8vw, 18px) !important; padding-left: 12px !important; border-left: none !important; color: var(--text-dim); font-style: italic; }
             color: var(--text-main);
             letter-spacing: 8px;
             text-transform: uppercase;
@@ -185,6 +189,44 @@
             letter-spacing: 2px;
         }
 
+        /* Per-level accents for class sections */
+        .class-heading.level-11 { border-left-color: #8B2020; color: #8B2020; }
+        .class-heading.level-10 { border-left-color: #4A4A4A; color: #4A4A4A; }
+
+        /* Also tint nearby card accents and stat numbers */
+        .class-heading.level-11 + .home-grid .philosophy-card { border-color: #8B2020; }
+        .class-heading.level-11 + .home-grid .stats-grid .stat-item h3 { color: #8B2020; }
+
+        .class-heading.level-10 + .home-grid .philosophy-card { border-color: #4A4A4A; }
+        .class-heading.level-10 + .home-grid .stats-grid .stat-item h3 { color: #4A4A4A; }
+
+        /* Level 12 accents (new) */
+        .class-heading.level-12 { border-left-color: var(--accent-12); color: var(--accent-12); }
+        .class-heading.level-12 + .home-grid .philosophy-card { border-color: var(--accent-12); }
+        .class-heading.level-12 + .home-grid .stats-grid .stat-item h3 { color: var(--accent-12); }
+        .class-heading.level-12 ~ .teacher-box .teacher-role { color: var(--accent-12) !important; }
+        .class-heading.level-12 ~ .teacher-box .teacher-quote { border-left-color: var(--accent-12) !important; }
+        .class-heading.level-12 ~ .org-title { color: var(--accent-12) !important; }
+        .class-heading.level-12 ~ .org-grid .org-card .role { color: var(--accent-12) !important; }
+        /* Make teacher photo and name use the same accent when present */
+        .class-heading.level-12 ~ .teacher-box .teacher-img img { border-color: var(--accent-12) !important; }
+        .class-heading.level-12 ~ .teacher-box .teacher-name { color: var(--accent-12) !important; }
+
+        /* Extend level-11 and level-10 accents to teacher and org sections */
+        .class-heading.level-11 ~ .teacher-box .teacher-role { color: var(--accent-11) !important; }
+        .class-heading.level-11 ~ .teacher-box .teacher-quote { border-left-color: var(--accent-11) !important; }
+        .class-heading.level-11 ~ .org-title { color: var(--accent-11) !important; }
+        .class-heading.level-11 ~ .org-grid .org-card .role { color: var(--accent-11) !important; }
+        .class-heading.level-11 ~ .teacher-box .teacher-img img { border-color: var(--accent-11) !important; }
+        .class-heading.level-11 ~ .teacher-box .teacher-name { color: var(--accent-11) !important; }
+
+        .class-heading.level-10 ~ .teacher-box .teacher-role { color: var(--accent-10) !important; }
+        .class-heading.level-10 ~ .teacher-box .teacher-quote { border-left-color: var(--accent-10) !important; }
+        .class-heading.level-10 ~ .org-title { color: var(--accent-10) !important; }
+        .class-heading.level-10 ~ .org-grid .org-card .role { color: var(--accent-10) !important; }
+        .class-heading.level-10 ~ .teacher-box .teacher-img img { border-color: var(--accent-10) !important; }
+        .class-heading.level-10 ~ .teacher-box .teacher-name { color: var(--accent-10) !important; }
+
         /* BERANDA GRID */
         .home-grid {
             display: grid;
@@ -199,6 +241,21 @@
             border-radius: 20px;
             border: 1px solid var(--border);
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Photo-only variant: remove card chrome so image is full-width */
+        .philosophy-card.photo {
+            background: transparent;
+            padding: 0;
+            border: none;
+            box-shadow: none;
+        }
+
+        .philosophy-card.photo img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 0; /* remove rounding to avoid 'box' feel */
         }
 
         .stats-grid {
@@ -256,12 +313,49 @@
             margin-bottom: 60px;
         }
 
-        .teacher-box img {
+        .teacher-img img {
             width: 250px;
             height: 320px;
             border-radius: 15px;
             object-fit: cover;
             border: 3px solid var(--primary);
+            display: block;
+        }
+
+        .teacher-info {
+            flex: 1;
+            min-width: 220px;
+        }
+
+        .teacher-role {
+            color: var(--primary);
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .teacher-name {
+            font-size: clamp(20px, 4.5vw, 36px);
+            margin: 6px 0 12px;
+            font-weight: 700;
+            line-height: 1.05;
+        }
+
+        /* teacher quote: single left accent line, color controlled per-level via --accent-XX */
+        :root {
+            --teacher-line-width: 4px;
+        }
+
+        .teacher-quote {
+            color: var(--text-dim);
+            border-left: var(--teacher-line-width) solid var(--primary);
+            padding-left: 18px;
+            font-style: italic;
+            font-size: 18px;
+            line-height: 1.4;
+            transition: border-color 180ms ease;
         }
 
         /* TIMELINE */
@@ -411,7 +505,11 @@
             }
 
             .member-info p:last-child {
-                display: none; /* Menyembunyikan kutipan "Most Likely To" di HP agar lebih ringkas */
+                display: block; /* Tampilkan kembali kutipan "Most Likely To" pada perangkat kecil */
+                font-size: 11px !important;
+                margin-top: 6px !important;
+                color: var(--text-dim) !important;
+                line-height: 1.2 !important;
             }
             
             .timeline::after { left: 30px; }
@@ -449,7 +547,7 @@
 
             /* Teacher box adjustments for small screens */
             .teacher-box { padding: 20px; gap: 16px; align-items: center; }
-            .teacher-box img { width: 140px; height: 180px; border-radius: 12px; }
+            .teacher-img img { width: 140px; height: 180px; border-radius: 12px; }
             .teacher-box h2 { font-size: 20px; line-height: 1.1; margin: 8px 0; }
             .teacher-box p { font-size: 14px; padding-left: 12px; border-left: 3px solid var(--primary); }
 
@@ -464,6 +562,13 @@
             .org-card .role { font-size: 11px; letter-spacing: 1px; }
             .org-card .name { font-size: 14px; margin: 6px 0; }
             .org-card .vibe { font-size: 12px; color: var(--text-dim); }
+
+            /* Further reduce the "Most Likely To" quote on very small screens */
+            .member-info p:last-child {
+                font-size: 10px !important;
+                margin-top: 4px !important;
+                line-height: 1.15 !important;
+            }
         }
 
         /* Ensure teacher box heading and paragraph are smaller and override inline styles */
