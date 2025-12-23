@@ -368,6 +368,61 @@
         .right::after { left: -8px; }
         .t-content { background: var(--card-bg); padding: 25px; border-radius: 15px; border: 1px solid var(--border); }
 
+        /* timeline content image styling */
+        .t-content .t-img {
+            width: 100%;
+            height: auto;
+            max-height: 340px; /* slightly larger */
+            display: block;
+            border-radius: 12px;
+            object-fit: cover;
+            object-position: top center;
+            margin-bottom: 12px;
+        }
+
+        /* timeline text sizing */
+        .t-content h3 { font-size: 20px; margin: 8px 0; }
+        .t-content p { font-size: 15px; color: var(--text-dim); line-height: 1.5; }
+
+        /* Lightbox / modal for enlarged images */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            padding: 20px;
+        }
+
+        .lightbox.open { display: flex; }
+
+        .lightbox img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+        }
+
+        .lightbox .close-btn {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.06);
+            color: white;
+            padding: 6px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        /* Make lightbox image slightly smaller on small screens */
+        @media (max-width: 480px) {
+            .lightbox img { max-height: 86vh; }
+        }
+
         /* CLASSMATES */
         .classmate-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 30px; }
         .member-card { background: var(--card-bg); border-radius: 15px; overflow: hidden; border: 1px solid var(--border); transition: 0.3s; text-align: center; }
@@ -569,6 +624,10 @@
                 margin-top: 4px !important;
                 line-height: 1.15 !important;
             }
+            /* Timeline image and text on small screens */
+            .t-content .t-img { max-height: 200px; }
+            .t-content h3 { font-size: 16px; }
+            .t-content p { font-size: 13px; }
         }
 
         /* Ensure teacher box heading and paragraph are smaller and override inline styles */
