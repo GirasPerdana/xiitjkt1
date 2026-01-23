@@ -268,6 +268,13 @@
             </div>
             <div class="timeline-container left">
                 <div class="t-content">
+                    <img src="The Journey/Classmeet 10.jpg" alt="Praktek Nikah" class="t-img">
+                    <h3>Desember, 2023</h3>
+                    <p>Classmeet perdana yang bener-bener pecah! Niatnya cuma seru-seruan, eh malah keterusan borong hadiah hampir di semua cabang lomba. Ternyata di balik kegabutan kita di kelas, tersimpan bakat-bakat 'pro-player' tersembunyi.</p>
+                </div>
+            </div>
+            <div class="timeline-container right">
+                <div class="t-content">
                     <img src="The Journey/Praktek Nikah.jpeg" alt="Praktek Nikah" class="t-img">
                     <h3>Januari, 2024</h3>
                     <p>Simulasi nikah tapi riwehnya kayak hajatan beneran. Dari sibuk nyari pinjeman jas, dekorasi panggung dadakan, sampai latihan ijab kabul yang gak kelar-kelar karena ketawa terus. Capek nyiapinnya, tapi pas hari-H malah jadi momen paling pecah se-angkatan!</p>
@@ -621,6 +628,71 @@
         })();
     </script>
 
+    <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getDatabase, ref, push, onChildAdded } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+  // Konfigurasi Anda dari image_cc7372.png
+  const firebaseConfig = {
+  apiKey: "AIzaSyDpiVHpawa_um1bYkzHEQfSD99ijZDksqc",
+  authDomain: "website-kelas-aa39c.firebaseapp.com",
+  databaseURL: "https://website-kelas-aa39c-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "website-kelas-aa39c",
+  storageBucket: "website-kelas-aa39c.firebasestorage.app",
+  messagingSenderId: "232306450482",
+  appId: "1:232306450482:web:33c2293c4851b59bc85c2b",
+  measurementId: "G-CWMEP2VEB5"
+};
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+  const dbRef = ref(db, 'guestbook');
+
+  // Fungsi Kirim ke Firebase
+  window.submitMsg = function() {
+    const name = document.getElementById('gName').value;
+    const msg = document.getElementById('gMsg').value;
+
+    if(name && msg) {
+      push(dbRef, {
+        nama: name,
+        pesan: msg,
+        waktu: Date.now()
+      }).then(() => {
+        document.getElementById('gName').value = '';
+        document.getElementById('gMsg').value = '';
+      });
+    } else {
+      alert("Lengkapi nama dan pesan dulu ya!");
+    }
+  };
+
+  onChildAdded(dbRef, (data) => {
+    const container = document.getElementById('comment-container');
+    const val = data.val();
+    
+    // Format tanggal: 23 Jan 2026, 17:34
+    const date = new Date(val.waktu);
+    const formattedTime = date.toLocaleDateString('id-ID', { 
+        day: 'numeric', 
+        month: 'short', 
+        hour: '2-digit', 
+        minute: '2-digit' 
+    });
+
+    const item = document.createElement('div');
+    item.className = 'comment-item'; // Tetap menggunakan class Anda
+    item.innerHTML = `
+        <div class="comment-header">
+            <strong>${val.nama}</strong>
+            <span class="comment-time">${formattedTime}</span>
+        </div>
+        <p>${val.pesan}</p>
+    `;
+    container.prepend(item);
+});
+</script>
+
     <script>
         // Navigasi Seksi
         function showSection(id, el) {
@@ -643,25 +715,6 @@
         mobileToggle.addEventListener('click', () => {
             navList.classList.toggle('active');
         });
-
-        // Simpan Pesan Buku Tamu
-        function submitMsg() {
-            const name = document.getElementById('gName').value;
-            const msg = document.getElementById('gMsg').value;
-            const container = document.getElementById('comment-container');
-
-            if(name && msg) {
-                const item = document.createElement('div');
-                item.className = 'comment-item';
-                item.innerHTML = `<strong>${name}:</strong><p>${msg}</p>`;
-                container.prepend(item);
-                
-                document.getElementById('gName').value = '';
-                document.getElementById('gMsg').value = '';
-            } else {
-                alert("Lengkapi nama dan pesan dulu ya!");
-            }
-        }
 
         // Reset Menu on Resize
         window.addEventListener('resize', () => {

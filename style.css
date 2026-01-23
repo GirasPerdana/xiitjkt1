@@ -457,6 +457,23 @@
         .btn-send { background: var(--primary); color: white; border: none; padding: 15px 40px; border-radius: 10px; cursor: pointer; font-weight: 800; text-transform: uppercase; width: 100%; }
         .comment-list { margin-top: 50px; }
         .comment-item { background: var(--bg); padding: 20px; border-radius: 15px; border-left: 5px solid var(--primary); margin-bottom: 15px; }
+        /* Tambahan untuk header komentar */
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.comment-time {
+    font-size: 0.8rem;
+    color: #888;
+    font-weight: 400;
+}
+
+.comment-item strong {
+    color: var(--primary); /* Mengikuti warna merah tombol Anda */
+}
 
         /* RESPONSIVE */
         @media (max-width: 1024px) {
