@@ -575,10 +575,6 @@
             <button class="btn-send" onclick="submitMsg()">Simpan Kenangan</button>
             
             <div class="comment-list" id="comment-container">
-                <div class="comment-item">
-                    <strong>Wali Kelas:</strong>
-                    <p>Jangan pernah lupakan sekolah ini, pintu selalu terbuka buat kalian!</p>
-                </div>
             </div>
         </div>
     </section>
@@ -667,26 +663,30 @@
     }
   };
 
-  // Fungsi Ambil Data & Tampilkan dengan Tanggal/Jam
   onChildAdded(dbRef, (data) => {
     const container = document.getElementById('comment-container');
     const val = data.val();
     
-    // Format tanggal dan jam (Contoh: 23 Jan, 17:34)
+    // Format tanggal: 23 Jan 2026, 17:34
     const date = new Date(val.waktu);
-    const options = { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' };
-    const formattedTime = date.toLocaleDateString('id-ID', options);
+    const formattedTime = date.toLocaleDateString('id-ID', { 
+        day: 'numeric', 
+        month: 'short', 
+        hour: '2-digit', 
+        minute: '2-digit' 
+    });
 
     const item = document.createElement('div');
-    item.className = 'comment-item';
+    item.className = 'comment-item'; // Tetap menggunakan class Anda
     item.innerHTML = `
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-        <strong style="color: #ff4b5c;">${val.nama}</strong> <small style="color: #888; font-size: 0.75rem;">${formattedTime}</small>
-      </div>
-      <p style="color: #ddd; line-height: 1.5; margin: 0;">${val.pesan}</p>
-    `;
+    <div class="comment-header">
+        <strong>${val.nama}</strong>
+        <span class="comment-time">${formattedTime}</span>
+    </div>
+    <p>${val.pesan}</p>
+`;
     container.prepend(item);
-  });
+});
 </script>
 
     <script>
