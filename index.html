@@ -540,15 +540,17 @@
     </div>
 
     <div class="guest-box" style="margin-bottom: 50px; padding: 20px;">
-        <div class="guest-input">
-            <input type="text" id="mTitle" placeholder="Judul Foto / Momen">
-        </div>
-        <div class="guest-input">
-            <input type="file" id="mFile" accept="image/*">
-        </div>
-        <button class="btn-send" id="btnUpload" onclick="uploadToImgBB()">Tambah Momen</button>
-    </div> <div class="gallery-grid" id="gallery-container">
-        </div>
+    <div class="guest-input">
+        <input type="text" id="mTitle" placeholder="Judul Foto / Momen">
+    </div>
+    <div class="guest-input">
+        <input type="file" id="mFile" accept="image/*">
+    </div>
+    <button class="btn-send" id="btnUpload" onclick="uploadToImgBB()">TAMBAH MOMEN</button>
+</div>
+
+<div id="gallery-container" class="gallery-grid">
+    </div>
 </section>
     <!-- 5. PLAYLIST -->
     <section id="playlist">
@@ -693,17 +695,22 @@
     finally { btn.disabled = false; btn.innerText = "Tambah Momen"; }
   };
 
-  // Gunakan ini agar foto langsung muncul tanpa refresh
-onChildAdded(galRef, (snapshot) => {
+  onChildAdded(galRef, (snapshot) => {
     const container = document.getElementById('gallery-container');
     const val = snapshot.val();
     
-    const item = document.createElement('div');
-    item.className = 'gallery-item';
-    item.innerHTML = `<img src="${val.url}" style="width:100%; border-radius:10px; margin-bottom:10px;">`;
-    
-    // Pakai prepend agar foto terbaru muncul paling atas/depan
-    container.prepend(item); 
+    // Validasi: Hanya buat elemen jika URL foto ada
+    if (val.url) {
+        const item = document.createElement('div');
+        item.className = 'gallery-item';
+        item.innerHTML = `
+            <img src="${val.url}" 
+                 style="width:100%; border-radius:10px; display:block;" 
+                 onerror="this.parentElement.style.display='none'">
+            <p style="text-align:center; margin-top:5px; font-size:0.8rem;">${val.judul || ''}</p>
+        `;
+        container.prepend(item);
+    }
 });
 </script>
 
