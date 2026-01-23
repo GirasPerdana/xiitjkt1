@@ -667,30 +667,26 @@
     }
   };
 
+  // Fungsi Ambil Data & Tampilkan dengan Tanggal/Jam
   onChildAdded(dbRef, (data) => {
     const container = document.getElementById('comment-container');
     const val = data.val();
     
-    // Format tanggal: 23 Jan 2026, 17:34
+    // Format tanggal dan jam (Contoh: 23 Jan, 17:34)
     const date = new Date(val.waktu);
-    const formattedTime = date.toLocaleDateString('id-ID', { 
-        day: 'numeric', 
-        month: 'short', 
-        hour: '2-digit', 
-        minute: '2-digit' 
-    });
+    const options = { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' };
+    const formattedTime = date.toLocaleDateString('id-ID', options);
 
     const item = document.createElement('div');
-    item.className = 'comment-item'; // Tetap menggunakan class Anda
+    item.className = 'comment-item';
     item.innerHTML = `
-        <div class="comment-header">
-            <strong>${val.nama}</strong>
-            <span class="comment-time">${formattedTime}</span>
-        </div>
-        <p>${val.pesan}</p>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+        <strong style="color: #ff4b5c;">${val.nama}</strong> <small style="color: #888; font-size: 0.75rem;">${formattedTime}</small>
+      </div>
+      <p style="color: #ddd; line-height: 1.5; margin: 0;">${val.pesan}</p>
     `;
     container.prepend(item);
-});
+  });
 </script>
 
     <script>
