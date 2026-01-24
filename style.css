@@ -101,14 +101,14 @@
         .hero {
             width: 100vw;
             aspect-ratio: 16/9;
-            max-height: 85vh;
+            max-height: 100vh;
             min-height: 320px;
             display: flex;
             flex-direction: column;
             justify-content: flex-end; /* Memaksa teks ke bawah */
             align-items: flex-start; /* Tetap di kiri */
             padding: 0 10% 80px 10%; /* Padding bawah ditambah agar tidak terlalu mepet tepi */
-            background: linear-gradient(to top, rgba(13, 17, 23, 0.9) 0%, rgba(13, 17, 23, 0.1) 50%),
+            background: linear-gradient(to top, rgb(13, 17, 23) 10%, rgba(13, 17, 23, 0) 75%),
                         url('kelas.jpeg');
             background-size: cover;
             background-position: center;
@@ -117,6 +117,18 @@
             margin-left: calc(-50vw + 50%);
             left: 50%;
             transform: translateX(-50%);
+        }
+
+        @media (max-width: 1024px) {
+            .hero { max-height: 85vh; }
+        }
+
+        @media (max-width: 768px) {
+            .hero { max-height: 70vh; }
+        }
+
+        @media (max-width: 480px) {
+            .hero { max-height: 60vh; }
         }
 
         .hero h1 {
