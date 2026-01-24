@@ -539,7 +539,9 @@
             <div class="line"></div>
         </div>
 
-        <div class="guest-box" style="margin-bottom: 50px; padding: 20px;">
+        <button class="btn-toggle-upload" id="toggleUploadBtn" onclick="toggleUploadBox()">+ TAMBAH MOMEN</button>
+
+        <div class="guest-box upload-box" id="uploadBox" style="margin-bottom: 50px; padding: 20px; display: none;">
             <div class="guest-input">
                 <input type="text" id="mTitle" placeholder="Judul Foto / Momen">
             </div>
@@ -592,41 +594,56 @@
 
     <script>
         // Lightbox behavior: open images with classes .t-img, .member-img, and teacher images
-        (function(){
-            const lb = document.getElementById('lightbox');
-            const lbImg = document.getElementById('lightbox-img');
-            const closeBtn = document.getElementById('lightbox-close');
+        const lb = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lightbox-img');
+        const closeBtn = document.getElementById('lightbox-close');
 
-            function openLightbox(src, alt){
-                lbImg.src = src;
-                lbImg.alt = alt || 'Preview image';
-                lb.classList.add('open');
-                lb.setAttribute('aria-hidden','false');
-            }
+        function openLightbox(src, alt){
+            lbImg.src = src;
+            lbImg.alt = alt || 'Preview image';
+            lb.classList.add('open');
+            lb.setAttribute('aria-hidden','false');
+        }
 
-            function closeLightbox(){
-                lb.classList.remove('open');
-                lb.setAttribute('aria-hidden','true');
-                lbImg.src = '';
-            }
+        function closeLightbox(){
+            lb.classList.remove('open');
+            lb.setAttribute('aria-hidden','true');
+            lbImg.src = '';
+        }
 
-            // Attach to images on the page
-            function attach(){
-                const imgs = document.querySelectorAll('img.t-img, img.member-img, .teacher-img img');
-                imgs.forEach(img => {
+        // Attach to images on the page
+        function attachLightbox(){
+            const imgs = document.querySelectorAll('img.t-img, img.member-img, .teacher-img img, .gallery-item img');
+            imgs.forEach(img => {
+                if(!img.hasAttribute('data-lightbox-attached')){
                     img.style.cursor = 'zoom-in';
+                    img.setAttribute('data-lightbox-attached', 'true');
                     img.addEventListener('click', function(){ openLightbox(this.src, this.alt); });
-                });
+                }
+            });
+        }
+
+        // close events
+        closeBtn.addEventListener('click', closeLightbox);
+        lb.addEventListener('click', function(e){ if(e.target === lb) closeLightbox(); });
+        document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
+
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', attachLightbox);
+        else attachLightbox();
+
+        // Toggle Upload Box Function
+        function toggleUploadBox(){
+            const uploadBox = document.getElementById('uploadBox');
+            const toggleBtn = document.getElementById('toggleUploadBtn');
+            
+            if(uploadBox.style.display === 'none'){
+                uploadBox.style.display = 'block';
+                toggleBtn.textContent = '- TUTUP UPLOAD';
+            } else {
+                uploadBox.style.display = 'none';
+                toggleBtn.textContent = '+ TAMBAH MOMEN';
             }
-
-            // close events
-            closeBtn.addEventListener('click', closeLightbox);
-            lb.addEventListener('click', function(e){ if(e.target === lb) closeLightbox(); });
-            document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
-
-            if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', attach);
-            else attach();
-        })();
+        }
     </script>
 
     <script type="module">
@@ -664,7 +681,9 @@
     const val = data.val();
     const item = document.createElement('div');
     item.className = 'comment-item';
-    item.innerHTML = `<strong>${val.nama}</strong><p>${val.pesan}</p>`;
+    const waktuObj = new Date(val.waktu);
+    const waktuStr = waktuObj.toLocaleDateString('id-ID', { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+    item.innerHTML = `<div class="comment-header"><strong>${val.nama}</strong><span class="comment-time">${waktuStr}</span></div><p>${val.pesan}</p>`;
     container.prepend(item);
   });
 
@@ -707,10 +726,12 @@
         item.innerHTML = `
             <img src="${val.url}" 
                  style="width:100%; border-radius:10px; display:block;" 
-                 onerror="this.parentElement.style.display='none'">
-            <p style="text-align:center; margin-top:5px; font-size:0.8rem;">${val.judul || ''}</p>
+                 onerror="this.style.backgroundColor='#30363d'; this.style.color='#8b949e'; this.alt='Foto tidak tersedia';"
+                 alt="Foto galeri">
         `;
         container.prepend(item);
+        // Attach lightbox ke image baru
+        attachLightbox();
     }
 });
 </script>
