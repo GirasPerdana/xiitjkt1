@@ -455,7 +455,15 @@
         input, textarea { width: 100%; padding: 15px; background: var(--bg); border: 1px solid var(--border); color: white; border-radius: 10px; font-size: 16px; outline: none; transition: 0.3s; }
         input:focus, textarea:focus { border-color: var(--primary); }
         .btn-send { background: var(--primary); color: white; border: none; padding: 15px 40px; border-radius: 10px; cursor: pointer; font-weight: 800; text-transform: uppercase; width: 100%; }
-        .comment-list { margin-top: 50px; }
+        .comment-list { margin-top: 30px; }
+
+        @media (max-width: 768px) {
+            .comment-list { margin-top: 25px; }
+        }
+
+        @media (max-width: 480px) {
+            .comment-list { margin-top: 20px; }
+        }
         .comment-item { background: var(--bg); padding: 20px; border-radius: 15px; border-left: 5px solid var(--primary); margin-bottom: 15px; }
         /* Tambahan untuk header komentar */
 .comment-header {
@@ -598,13 +606,13 @@
             .right { left: 0; }
             .teacher-box { flex-direction: column; text-align: center; }
             .gallery-grid { columns: 2; }
+            
         }
 
         /* Make class-heading slightly smaller on tablet/mobile */
         @media (max-width: 1024px) {
             .class-heading { font-size: 20px; padding-left: 16px; }
         }
-
         @media (max-width: 480px) {
             .class-heading { font-size: 16px; padding-left: 12px; }
         }
@@ -631,7 +639,8 @@
             .teacher-box h2 { font-size: 20px; line-height: 1.1; margin: 8px 0; }
             .teacher-box p { font-size: 14px; padding-left: 12px; border-left: 3px solid var(--primary); }
 
-            .guest-box, .guest-input, .playlist-wrapper { padding: 20px; }
+            .guest-box { padding: 20px; }
+            .guest-input, .playlist-wrapper { padding: 0; }
 
             /* Org grid: two columns on small screens (left/right) */
             .org-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -653,6 +662,7 @@
             .t-content .t-img { max-height: 200px; }
             .t-content h3 { font-size: 16px; }
             .t-content p { font-size: 13px; }
+
         }
 
         /* Ensure teacher box heading and paragraph are smaller and override inline styles */
@@ -680,3 +690,4 @@
             .teacher-box h2 { font-size: 18px !important; }
             .teacher-box p { font-size: 14px !important; padding-left: 8px !important; }
         }
+        
