@@ -448,7 +448,11 @@
         }
 
         @media (max-width: 768px) {
-            .gallery-grid { columns: 2 200px; }
+            .gallery-grid { columns: 2 150px; }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid { columns: 2 120px; }
         }
         .gallery-item { margin-bottom: 20px; break-inside: avoid; border-radius: 15px; overflow: hidden; border: 1px solid var(--border); }
         .gallery-item img { width: 100%; display: block; transition: 0.5s; }
