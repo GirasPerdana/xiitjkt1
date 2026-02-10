@@ -715,7 +715,7 @@
     finally { btn.disabled = false; btn.innerText = "Tambah Momen"; }
   };
 
-  onChildAdded(galRef, (snapshot) => {
+    onChildAdded(galRef, (snapshot) => {
     const container = document.getElementById('gallery-container');
     const val = snapshot.val();
     
@@ -723,15 +723,38 @@
     if (val.url) {
         const item = document.createElement('div');
         item.className = 'gallery-item';
-        item.innerHTML = `
-            <img src="${val.url}" 
-                 style="width:100%; border-radius:10px; display:block;" 
-                 onerror="this.style.backgroundColor='#30363d'; this.style.color='#8b949e'; this.alt='Foto tidak tersedia';"
-                 alt="Foto galeri">
-        `;
+
+        // Inline SVG fallback (data URI) to show a graceful placeholder when image fails
+        const svgFallback = 'data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22720%22 height=%22480%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%2330363d%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%238b949e%22 font-family=%22Segoe UI%2C Tahoma%2C Geneva%2C Verdana%2C sans-serif%22 font-size=%2232%22>Foto tidak tersedia</text></svg>';
+
+        // Create DOM image element with tiny placeholder to reserve layout
+        const img = document.createElement('img');
+        img.style.width = '100%';
+        img.style.borderRadius = '10px';
+        img.style.display = 'block';
+        img.loading = 'lazy';
+        img.alt = 'Foto galeri';
+        img.setAttribute('data-img-src', val.url);
+        img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
+
+        item.appendChild(img);
         container.prepend(item);
-        // Attach lightbox ke image baru
-        attachLightbox();
+
+        // Preload via JS Image to detect load/error before swapping into DOM image
+        const loader = new Image();
+        loader.crossOrigin = 'anonymous';
+        loader.onload = function() {
+            img.src = val.url;
+            try { attachLightbox(); } catch(e) {}
+        };
+        loader.onerror = function(ev) {
+            console.error('Gallery image failed to load:', val.url, ev);
+            img.src = svgFallback;
+            img.setAttribute('data-fallback', '1');
+            try { attachLightbox(); } catch(e) {}
+        };
+        // start loading
+        loader.src = val.url;
     }
 });
 </script>
@@ -742,11 +765,39 @@
             document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.nav-menu a').forEach(a => a.classList.remove('active'));
             
-            document.getElementById(id).classList.add('active');
+            const sec = document.getElementById(id);
+            sec.classList.add('active');
             if(el) el.classList.add('active');
-            
+
+            // If opening gallery, force a reflow so CSS columns recalculate on some browsers/devices
+            if (id === 'gallery') {
+                const gallery = document.getElementById('gallery-container');
+                    if (gallery) {
+                        gallery.style.display = 'none';
+                        void gallery.offsetHeight; // force reflow
+                        gallery.style.display = '';
+                        // ensure lightbox events are attached (in case images were added while section hidden)
+                        if (typeof attachLightbox === 'function') attachLightbox();
+
+                        // Try to reload images that may not have been fetched while gallery was hidden
+                        const imgs = gallery.querySelectorAll('img');
+                        imgs.forEach(img => {
+                            try {
+                                if (!img.dataset.fallback) {
+                                    // re-trigger load: switch src briefly to force re-request on some browsers
+                                    const s = img.getAttribute('data-img-src') || img.src;
+                                    img.loading = 'eager';
+                                    img.src = '';
+                                    void img.offsetWidth;
+                                    img.src = s;
+                                }
+                            } catch (e) { /* ignore */ }
+                        });
+                    }
+            }
+
             window.scrollTo(0,0);
-            
+
             // Tutup menu mobile jika sedang terbuka
             document.getElementById('nav-list').classList.remove('active');
         }
